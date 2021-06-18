@@ -1,2 +1,2 @@
-# TF-custom-paypal-donations
-TF-custom-paypal-donations
+# Paypal-fixed-price-with-notification
+Paypal-fixed-price-with-notification

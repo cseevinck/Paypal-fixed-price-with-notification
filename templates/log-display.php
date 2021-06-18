@@ -1,13 +1,13 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit; 
 /*
- * Template Name: TFDON Log Display
+ * Template Name: PPFPN Log Display
  *
  * Template that displays log file entries 
  */
 
-require_once (ABSPATH . PLUGINDIR .'/tf-paypal-donate/inc/tfdon-log.php');
-require_once (ABSPATH . PLUGINDIR .'/tf-paypal-donate/inc/tfdon-display-logs.php');
+require_once (ABSPATH . PLUGINDIR .'/tf-paypal-donate/inc/ppfpn-log.php');
+require_once (ABSPATH . PLUGINDIR .'/tf-paypal-donate/inc/ppfpn-display-logs.php');
 get_header(); ?>
 
 	<div id="primary" class="featured-content content-area">
@@ -16,7 +16,7 @@ get_header(); ?>
 			<?php
 			while ( have_posts() ) : the_post();
 			//	get_template_part( 'template-parts/content', 'page' );
-				?><div class="entry-content tfdon-content">
+				?><div class="entry-content ppfpn-content">
 					<?php
 						the_content();
 
@@ -27,8 +27,8 @@ get_header(); ?>
 					<?php
         // Put code here for display log file
 					$file = $_GET['file']; 
-					tfdon_log("Inside log-display: file= ", $file); 
-					tfdon_display_log_file ($file);
+					ppfpn_log("Inside log-display: file= ", $file); 
+					ppfpn_display_log_file ($file);
 			endwhile; // End of the loop.
 			?>
 

@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 *
 */
 
-function tfdon_display_log_file ($what_file=null){
+function ppfpn_display_log_file ($what_file=null){
   $upload_dir = wp_upload_dir();
   $upload_dir = $upload_dir['basedir'];
   if ($what_file) {
@@ -18,21 +18,21 @@ function tfdon_display_log_file ($what_file=null){
   // message if file does not exist
   if (!file_exists ( $file )) {
     ?>
-    <div id="tfdon-page"> 
-      <h1 class="tfdon-page-hdr">Log file does not exist</h1>
-      <p class="tfdon-page-hdr">file name=<?php echo $file;?></p>
+    <div id="ppfpn-page"> 
+      <h1 class="ppfpn-page-hdr">Log file does not exist</h1>
+      <p class="ppfpn-page-hdr">file name=<?php echo $file;?></p>
     </div>
     <?php 
     return;
   }
   ?>
-  <div id="tfdon-page"> 
+  <div id="ppfpn-page"> 
     <?php
     $log_data = file_get_contents ($file);
     ?>
-    <div class="tfdon-box-style">
+    <div class="ppfpn-box-style">
     <?php
-    echo tfdonConvertPlainTextToHTML($log_data);
+    echo ppfpnConvertPlainTextToHTML($log_data);
     ?>
     </div>
   </div>
@@ -48,13 +48,13 @@ function tfdon_display_log_file ($what_file=null){
  *  Input: $s string
  * 
  */
-function tfdonConvertPlainTextToHTML($s) {
+function ppfpnConvertPlainTextToHTML($s) {
    $LineFeed = strpos($s,"\r\n")!==false ? "\r\n" : ( strpos($s,"\n")!==false ? "\n" : "\r" );
    $s = trim($s); 
    $s = strpos($s,"\n")===false ? str_replace("\r","\n",$s) : str_replace("\r",'',$s);
-   $s = preg_replace('/\n\n+/','</p><p class="tfdon-p-margin">~~N-n~--',$s);
+   $s = preg_replace('/\n\n+/','</p><p class="ppfpn-p-margin">~~N-n~--',$s);
    $s = str_replace('~~N-n~--',"\n",$s);
-   $s = "<p class='tfdon-p-margin'>\n$s\n</p>";
+   $s = "<p class='ppfpn-p-margin'>\n$s\n</p>";
 
    // make all linefeeds into 7F 
    $s = str_replace("\n",chr(0x7f),$s); 
@@ -65,7 +65,7 @@ function tfdonConvertPlainTextToHTML($s) {
    $cnt = 1;
    $backn = chr(0x7f);
    while ($cnt == 1) {
-      $newnum = chr(0x0a) . "<span class='tfdon-log-num'>" . sprintf('%05d', $linenum++) . '</span>' . "  "; 
+      $newnum = chr(0x0a) . "<span class='ppfpn-log-num'>" . sprintf('%05d', $linenum++) . '</span>' . "  "; 
       $s = str_replace_first($backn, $newnum, $s, $cnt);
     }
    return $s;
@@ -93,7 +93,7 @@ function str_replace_first($from, $to, $content, &$count)
  *    $str is the string
  *    
  */
-function tfdon_rep_num_chrs ($num, $chr ,$str) {
+function ppfpn_rep_num_chrs ($num, $chr ,$str) {
    // build string with lf + $num times space  
    $rplc = $chr;
    $spc = "\n";

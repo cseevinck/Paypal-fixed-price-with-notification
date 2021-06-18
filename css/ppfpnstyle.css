@@ -1,38 +1,38 @@
 /* CSS for the front end view */
 
-.tfdon-all {
+.ppfpn-all {
 /*	text-align: center; */
 }
 
-.tfdon-give-to-h2 {
+.ppfpn-give-to-h2 {
 	padding-bottom: 10px;
 	font-size: 26px;
 	padding-left: 40px;
 	text-align: left;
 }
 
-.tfdon-give-to-div {
+.ppfpn-give-to-div {
 	font-size: 14px;
 	padding-left: 40px;
 }
 
-.tfdon-form {
+.ppfpn-form {
 	border: none ! important;
 	display: inline-block;
 	vertical-align:top;
 	padding-left: 40px;
 }
 
-.tfdon-form tbody {
+.ppfpn-form tbody {
 	border: none! important;
 }
 
-.tfdon-form tr td {
+.ppfpn-form tr td {
 	border: none ! important;
 	padding-left: 0px ! important;
 }
 
-.tfdon-field {
+.ppfpn-field {
 	border: 1px solid #333;
 	background-color:#eee;
 	height: 100px ! important;
@@ -41,7 +41,7 @@
 	width: 100%;
 }
 
-.tfdon-admin input.wide, input.wide { 
+.ppfpn-admin input.wide, input.wide { 
     width: 500px;
 }
 
@@ -52,48 +52,48 @@ article.page {
 	background-color: #fff;
 }
 
-.tfdon-content {
+.ppfpn-content {
 	padding-left: 40px;
 } 
 
-#tfdon-page {
+#ppfpn-page {
 	border: none ! important;
 	padding-left: 40px;
 	padding-bottom: 50px;
 	background-color:#fff;
 }
 
-#tfdon-log {
+#ppfpn-log {
 	border: none ! important;
 	padding-left: 40px;
 	padding-bottom: 50px;
 }
 
-.tfdon-log-form {
+.ppfpn-log-form {
 	display: flex; 
 	align-items: center;
 }
 
-.tfdon-log-num {
+.ppfpn-log-num {
 	color: #89adac;
 }
 
-.tfdon-log-date-desc {
+.ppfpn-log-date-desc {
 	font-weight: 700;
 }
 
-.tfdon-log-form p {
+.ppfpn-log-form p {
 	font-size: 15px;
 	margin-top: 0;
 	padding-right: 14px;
 }
 
-.tfdon-log-form label {
+.ppfpn-log-form label {
 	font-size: 15px;
 	padding-right: 10px;
 }
 
-.tfdon-button {
+.ppfpn-button {
 	font-size: 14px ! important;
 	background-color: #89adac ! important;
 	padding: 7px ! important;
@@ -104,31 +104,31 @@ article.page {
 	font-weight: 600 ! important;
 }
 
-.tfdon-log-form input {
+.ppfpn-log-form input {
 	margin-bottom: 3px;
 }
 
-.tfdon-radio {
+.ppfpn-radio {
 	display: contents;
 }
 
-.tfdon-page-hdr {
+.ppfpn-page-hdr {
 	text-align: center;
 }
 
-.tfdon-log-delete-form {
+.ppfpn-log-delete-form {
 	padding-top: 50px;
 	display: flex;
 	align-items: center;
 }
 
-.tfdon-log-delete-form p {
+.ppfpn-log-delete-form p {
 	font-size: 15px;
 	margin-top: 15px;
 	padding-right: 14px;
 }
 
-.tfdon-box-style {
+.ppfpn-box-style {
  	width: 100%;
  	padding: 0 .75em;
  	box-sizing: border-box;
@@ -136,51 +136,51 @@ article.page {
 	word-break: break-all;
  }
 
- .tfdon-box-style pre {
+ .ppfpn-box-style pre {
 	  white-space: pre-wrap;
 		word-break: break-all;
  }
 
- .tfdon-p-margin {
+ .ppfpn-p-margin {
  	margin: 0;
  }
 
 @media only screen and (max-width: 600px) {  
-	.tfdon-all {
+	.ppfpn-all {
 		text-align: center;
 	}
 
-	.tfdon-form {
+	.ppfpn-form {
 	/*	display: inline-table; */
 	}
 
-	.tfdon-give-to-h2 {
+	.ppfpn-give-to-h2 {
 		text-align: center;
 	}
 
-	.tfdon-give-to-div {
+	.ppfpn-give-to-div {
 		text-align: left ! important;
 		padding-left: 0;
 	}
 
-	.tfdon-log-form {
+	.ppfpn-log-form {
 		display: grid; 
 	}
 
-	.tfdon-log-delete-form {
+	.ppfpn-log-delete-form {
 		display: grid; 
 	}
 
-	.tfdon-radio {
+	.ppfpn-radio {
 		display: flex;
 	}
 
-	.tfdon-button {
+	.ppfpn-button {
 		margin-left: 0 ! important;
 		margin-top: 10px ! important;
 	}
 
-	.tfdon-vis {
+	.ppfpn-vis {
 	 	display: none;
 	}
 	

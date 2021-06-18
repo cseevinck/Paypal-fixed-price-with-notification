@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 /** 
  *  Custom log file handler 
- *  This log file is to debug the tf-paypal-donations plugin. Entries are placed 
+ *  This log file is to debug the plugin. Entries are placed 
  *  in the uploads folder. This function will determine the type of data 
  *  ($message) and will try to present the data in a readable fashion. In cases 
  *  where the data is allready in a readable format, the $forcestring argument 
@@ -11,12 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *  to format it at all.      
  * 
  *  Use like this:
- *    1. tfdon_log("description of log entry", "data to log");
+ *    1. ppfpn_log("description of log entry", "data to log");
  * 
  *    2. $array_value = array("foo","bar");
- *       tfdon_log("description of log entry", $array_value);
+ *       ppfpn_log("description of log entry", $array_value);
  * 
- *    3. tfdon_log("description of log entry", "formatted data to log", true);
+ *    3. ppfpn_log("description of log entry", "formatted data to log", true);
  * 
  *  $description - A string describing the log entry
  *  $message - The item to logged
@@ -27,23 +27,23 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * 
 */
 
-const TFDON_CURRENT_LOG = "tf_paypal_donate.log";
-const TFDON_OLDER_LOG = "tf_paypal_donate_old.log";
+const PPFPN_CURRENT_LOG = "tf_paypal_donate.log";
+const PPFPN_OLDER_LOG = "tf_paypal_donate_old.log";
 
-function tfdon_log($description, $message, $forceformat = "") { 
-  $options = get_option( 'tfdon_settings' ); // return if log turned off
-  // if (empty($options['tfdon_log_display'])) {
+function ppfpn_log($description, $message, $forceformat = "") { 
+  $options = get_option( 'ppfpn_settings' ); // return if log turned off
+  // if (empty($options['ppfpn_log_display'])) {
   //   echo ('TF Paypal Donations Setup Page: URL of page for log file displays is empty!'); 
   //   return; 
   // } 
-  if (!isset($options['tfdon_log'])) {
+  if (!isset($options['ppfpn_log'])) {
     return;
   } 
 
   $upload_dir = wp_upload_dir();
   $upload_dir = $upload_dir['basedir'];
-  $file  = $upload_dir . '/' . TFDON_CURRENT_LOG;
-  $file_old  = $upload_dir . '/' . TFDON_OLDER_LOG;
+  $file  = $upload_dir . '/' . PPFPN_CURRENT_LOG;
+  $file_old  = $upload_dir . '/' . PPFPN_OLDER_LOG;
 
   if ($forceformat == "string"){
     $message = $message;
@@ -51,14 +51,14 @@ function tfdon_log($description, $message, $forceformat = "") {
   } else
   if (gettype ( $message ) == "array" || gettype ( $message ) == "object") {
     $description = "(array|object): " . $description;
-    $message = tfdon_pretty_it($message);
+    $message = ppfpn_pretty_it($message);
   }
   else {
     $description = "(unknown): " . $description;
     $message = ($message);
   }
  
-  file_put_contents($file, "\n<span class='tfdon-log-date-desc'>" . date('Y-m-d h:i:s') . " :: " . $description . "</span>\n   " . $message, FILE_APPEND);
+  file_put_contents($file, "\n<span class='ppfpn-log-date-desc'>" . date('Y-m-d h:i:s') . " :: " . $description . "</span>\n   " . $message, FILE_APPEND);
   clearstatcache();
   $siz = filesize ($file);
   if ($siz > 80000){
@@ -73,7 +73,7 @@ function tfdon_log($description, $message, $forceformat = "") {
  *  Pretty up for array and object entries  
  * 
 */
-function tfdon_pretty_it($arr){
+function ppfpn_pretty_it($arr){
     $start = "'";
     foreach ($arr as $key => $value) {
         $data = $data."".$start."".$key."'=>'".$value."',\n";

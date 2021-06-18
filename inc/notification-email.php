@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *  $verified=true means the IPN was verified by PayPal  
  *  $verified=false means the IPN was not verified by PayPal 
 */
-function tfdon_send_notification_email($ipn, $verified) {
-    $options = get_option( 'tfdon_settings' );
+function ppfpn_send_notification_email($ipn, $verified) {
+    $options = get_option( 'ppfpn_settings' );
     $output = []; // build message for email
     $log = []; // build log entry 
 
@@ -22,30 +22,30 @@ function tfdon_send_notification_email($ipn, $verified) {
     $transaction = $log['txn_type'] = $ipn["txn_type"];
     switch ($transaction) {
     case "web_accept":
-        tfdon_web_accept_data($output, $log, $ipn);
+        ppfpn_web_accept_data($output, $log, $ipn);
         break;
     case "recurring_payment":
-        tfdon_recurring_payment_data($output, $log, $ipn);
+        ppfpn_recurring_payment_data($output, $log, $ipn);
         break;
     case "recurring_payment_profile_created":
-        tfdon_recurring_payment_profile_created_data($output, $log, $ipn);
+        ppfpn_recurring_payment_profile_created_data($output, $log, $ipn);
         break;
     default:
-        tfdon_log("tfdon_send_notification_email - txn_type = ", $transaction); 
-        tfdon_unknown_ipn_data($output, $log, $ipn);
+        ppfpn_log("ppfpn_send_notification_email - txn_type = ", $transaction); 
+        ppfpn_unknown_ipn_data($output, $log, $ipn);
     }
     
     $message = join("\r\n",$output);
-    $tfdon_paypal_email = $options['tfdon_paypal_email'];
-    $recipient = $options['tfdon_notification_to_email'];
-    $subject = "Disbursement details for donation from: " . $ipn["first_name"] . " " . $ipn["last_name"];
-    $from = $options['tfdon_notification_from_email'];
-    $replyto = $options['tfdon_notification_reply_to_email'];
+    $ppfpn_paypal_email = $options['ppfpn_paypal_email'];
+    $recipient = $options['ppfpn_notification_to_email'];
+    $subject = "Payment details for payment from: " . $ipn["first_name"] . " " . $ipn["last_name"];
+    $from = $options['ppfpn_notification_from_email'];
+    $replyto = $options['ppfpn_notification_reply_to_email'];
     
     // Don't know how to build the headers variable -- use default 
-    //$headers = 'From: ' . $tfdon_paypal_email . ' <' . $from . '>' . "\r\n";
-    //$headers .= 'Reply-To: ' . $tfdon_paypal_email . ' <' . $replyto . '>' . "\r\n";
-    //echo "<br>org = " . $tfdon_org . "<br>";
+    //$headers = 'From: ' . $ppfpn_paypal_email . ' <' . $from . '>' . "\r\n";
+    //$headers .= 'Reply-To: ' . $ppfpn_paypal_email . ' <' . $replyto . '>' . "\r\n";
+    //echo "<br>org = " . $ppfpn_org . "<br>";
     //echo "<br>from = " . $from . "<br>";
     //echo "<br>replyto = " . $replyto . "<br>";
     //echo "<br>headers = " . $headers . "<br>";
@@ -56,7 +56,7 @@ function tfdon_send_notification_email($ipn, $verified) {
 
     wp_mail( $recipient, $subject, $message );
     // Put the notification into the log file
-    tfdon_log($subject . ", sent to email address: " . $recipient , $log); 
+    ppfpn_log($subject . ", sent to email address: " . $recipient , $log); 
 }
 
 /** 
@@ -66,7 +66,7 @@ function tfdon_send_notification_email($ipn, $verified) {
  *  $output - output array already set up  
  * 
 */
-function tfdon_web_accept_data(&$output, &$log, $ipn) {
+function ppfpn_web_accept_data(&$output, &$log, $ipn) {
     $output[] = $log['txn_desc'] = 
         "Paypal transaction for regular (non-recurring) donation";
     $output[] = $log['donor_name'] = 
@@ -92,7 +92,7 @@ function tfdon_web_accept_data(&$output, &$log, $ipn) {
  *  $output - output array already set up  
  * 
 */
-function tfdon_recurring_payment_data(&$output, &$log, $ipn) {
+function ppfpn_recurring_payment_data(&$output, &$log, $ipn) {
     $output[] = $log['txn_desc'] = 
         "Paypal transaction for recurring payment";
     $output[] = $log['donor_name'] = 
@@ -119,7 +119,7 @@ function tfdon_recurring_payment_data(&$output, &$log, $ipn) {
  *  $output - output array already set up   
  *                                              
 */
-function tfdon_recurring_payment_profile_created_data(&$output, &$log, $ipn) {
+function ppfpn_recurring_payment_profile_created_data(&$output, &$log, $ipn) {
     $output[] = $log['txn_desc'] = 
         "Paypal transaction for the creation of a recurring payment";
     $output[] = $log['donor_name'] = 
@@ -144,7 +144,7 @@ function tfdon_recurring_payment_profile_created_data(&$output, &$log, $ipn) {
  *  $output - output array already set up   
  *                                              
 */
-function tfdon_unknown_ipn_data($output, &$log, $ipn) {
+function ppfpn_unknown_ipn_data($output, &$log, $ipn) {
     $output[] = $log['unknown_ipn'] = 
         "This is a Paypal IPN message we did not plan for. Please let support have a copy of this message";
     $output[] = print_r ($ipn, TRUE);
